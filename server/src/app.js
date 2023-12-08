@@ -6,12 +6,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-let cafes = {
-  americano: { stock: 10, price: 850 },
-  capuchino: { stock: 8, price: 950 },
-  latte: { stock: 10, price: 1150 },
-  mocachino: { stock: 15, price: 1300 },
-};
+let cafes = [
+  { type: 'americano', stock: 10, price: 850 },
+  { type: 'capuchino', stock: 8, price: 950 },
+  { type: 'latte', stock: 10, price: 1150 },
+  { type: 'mocachino', stock: 15, price: 1300 },
+];
 
 let coins = {
   500: 20,
@@ -23,15 +23,21 @@ let coins = {
 let bills = 0;
 
 app.get('/cafes', (req, res) => {
-  res.json(cafes);
+  const cafeData = cafes.reduce((acc, cafe) => {
+    acc[cafe.type] = { stock: cafe.stock, price: cafe.price };
+    return acc;
+  }, {});
+  res.json(cafeData);
 });
 
 app.post('/purchase', (req, res) => {
   const { type, quantity } = req.body;
-  if (cafes[type] && cafes[type].stock >= quantity) {
-    const totalPrice = cafes[type].price * quantity;
+  const cafeIndex = cafes.findIndex(cafe => cafe.type === type);
+
+  if (cafeIndex !== -1 && cafes[cafeIndex].stock >= quantity) {
+    const totalPrice = cafes[cafeIndex].price * quantity;
     res.json({ success: true, totalPrice });
-    cafes[type].stock -= quantity;
+    cafes[cafeIndex].stock -= quantity;
   } else {
     res.json({ success: false, message: 'Error: Insufficient stock.' });
   }
@@ -87,4 +93,3 @@ function calculateChange(totalPrice) {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
