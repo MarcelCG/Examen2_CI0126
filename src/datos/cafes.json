@@ -1,0 +1,7 @@
+{
+    "americano": { "stock": 10, "price": 850 },
+    "capuchino": { "stock": 8, "price": 950 },
+    "latte": { "stock": 10, "price": 1150 },
+    "mocachino": { "stock": 15, "price": 1300 }
+  }
+  
