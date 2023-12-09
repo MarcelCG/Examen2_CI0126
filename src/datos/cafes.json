@@ -1,7 +1,21 @@
 {
-    "americano": { "stock": 10, "price": 850 },
-    "capuchino": { "stock": 8, "price": 950 },
-    "latte": { "stock": 10, "price": 1150 },
-    "mocachino": { "stock": 15, "price": 1300 }
-  }
-  
+  "tiposDeCafe": [
+    { "nombre": "Café Americano", "cantidad": 10, "precio": 850 },
+    { "nombre": "Capuchino", "cantidad": 8, "precio": 950 },
+    { "nombre": "Latte", "cantidad": 10, "precio": 1150 },
+    { "nombre": "Mocachino", "cantidad": 15, "precio": 1300 }
+  ],
+  "divisa": [
+    {"tipodeMoneda": 500, "cantidad": 20, "formato": "moneda"},
+    {"tipodeMoneda": 100, "cantidad": 30, "formato": "moneda"},
+    {"tipodeMoneda": 50, "cantidad": 50, "formato": "moneda"},
+    {"tipodeMoneda": 25, "cantidad": 25, "formato": "moneda"}
+  ],
+  "divisaDisponible": [
+    {"tipodeMoneda": 500, "formato": "moneda"},
+    {"tipodeMoneda": 100, "formato": "moneda"},
+    {"tipodeMoneda": 50, "formato": "moneda"},
+    {"tipodeMoneda": 25, "formato": "moneda"},
+    {"tipodeMoneda": 1000, "formato": "billete"}
+]
+}
